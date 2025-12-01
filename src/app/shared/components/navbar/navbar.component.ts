@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
 import { initFlowbite } from 'flowbite';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -11,6 +11,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavbarComponent {
   constructor(private flowbiteService: FlowbiteService) {}
+  @Input({ required: true }) isLoggedIn: boolean = true;
 
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {

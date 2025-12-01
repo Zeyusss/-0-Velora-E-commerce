@@ -119,8 +119,9 @@
             0
           </span>
         </a>
+        @if (isLoggedIn === false) {
         <a href="#" class="text-md uppercase">login / register</a>
-        <a href="#" class="text-md">SignOut</a>
+        }@else {<a href="#" class="text-md">SignOut</a>}
       </div>
     </div>
   </nav>

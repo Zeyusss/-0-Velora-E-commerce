@@ -10,7 +10,9 @@ import { ProductResponse } from '../../models/products/product-response.interfac
 export class ProductService {
   private readonly httpClient = inject(HttpClient);
 
-  getProducts(): Observable<ProductResponse> {
-    return this.httpClient.get<ProductResponse>(`${environment.baseUrl}/products`);
+  getProducts(pageNumber: number = 1): Observable<ProductResponse> {
+    return this.httpClient.get<ProductResponse>(
+      `${environment.baseUrl}/products?page=${pageNumber}`
+    );
   }
 }

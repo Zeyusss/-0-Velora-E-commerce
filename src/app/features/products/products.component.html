@@ -1,1 +1,26 @@
-<p>products works!</p>
+<section class="py-14">
+  <div class="container">
+    <!-- Main Title -->
+    <div class="text-center">
+      <span class="text-(--main-color) text-lg">Priceless Products</span>
+      <h2 class="uppercase text-4xl my-5">OUR PRODUCTS</h2>
+      <input
+        [(ngModel)]="text"
+        class="w-1/2 m-auto border rounded p-3"
+        placeholder="Search..."
+        type="search"
+      />
+    </div>
+    <!-- Products -->
+    <div class="grid sm:grid-cols-3 md:grid-cols-4 gap-10">
+      @for (product of productList | paginate: { id: 'foo', itemsPerPage: pageSize, currentPage: p,
+      totalItems: total } | search : text ; track product._id) {
+      <app-card [product]="product" />
+      }
+    </div>
+    <!-- Pagination -->
+    <div class="flex justify-center mt-10 text-2xl">
+      <pagination-controls id="foo" (pageChange)="getProducts($event)"> </pagination-controls>
+    </div>
+  </div>
+</section>

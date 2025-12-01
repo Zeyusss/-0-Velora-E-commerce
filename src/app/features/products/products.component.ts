@@ -1,11 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
+import { ProductService } from '../../core/services/product/product.service';
+import { ProductObject } from '../../core/models/products/product-object.interface';
+import { CardComponent } from '../../shared/components/card/card.component';
+import { SearchPipe } from '../../shared/pipes/search/search-pipe';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-products',
-  imports: [],
+  imports: [CardComponent, SearchPipe, FormsModule, NgxPaginationModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-
+  private readonly productService = inject(ProductService);
+  productList: ProductObject[] = [];
+  text: string = '';
+  pageSize!: number;
+  p!: number;
+  total!: number;
+  ngOnInit(): void {
+    this.getProducts();
+  }
+  getProducts(pageNumber: number = 1): void {
+    this.productService.getProducts(pageNumber).subscribe({
+      next: (res) => {
+        this.productList = res.data;
+        this.pageSize = res.metadata.limit;
+        this.p = res.metadata.currentPage;
+        this.total = res.results;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }
