@@ -11,12 +11,15 @@ import { CheckoutComponent } from './features/checkout/checkout.component';
 import { ProductsComponent } from './features/products/products.component';
 import { NotfoundComponent } from './features/notfound/notfound.component';
 import { DetailsComponent } from './features/details/details.component';
+import { isloggedinGuard } from './core/guard/isloggedin/isloggedin-guard';
+import { authGuard } from './core/guard/auth/auth-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: '',
     component: AnonLayoutComponent,
+    canActivate: [isloggedinGuard],
     children: [
       { path: 'login', component: LoginComponent, title: 'Login Page' },
       { path: 'register', component: RegisterComponent, title: 'RegisterPage' },
@@ -25,6 +28,7 @@ export const routes: Routes = [
   {
     path: '',
     component: UserLayoutComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'home', component: HomeComponent, title: 'Home Page' },
       { path: 'brands', component: BrandsComponent, title: 'Brands Page' },

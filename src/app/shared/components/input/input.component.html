@@ -1,0 +1,27 @@
+<div class="relative">
+  <input
+    class="main-input my-5 peer"
+    [formControl]="control"
+    [type]="inputType"
+    [id]="inputId"
+    placeholder=" "
+  />
+  <label [for]="inputId" class="main-label"> {{ labelName }} </label>
+</div>
+@if (control?.errors && control?.touched) {
+<div class="flex p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-800" role="alert">
+  <div>
+    <ul class="mt-1.5 list-disc list-inside">
+      @if (control?.hasError('required')) {
+      <li>Input Required</li>
+      } @if (control?.hasError('email')) {
+      <li>Email Required</li>
+      } @if (control?.hasError('pattern')) {
+      <li><ng-content></ng-content></li>
+      } @if (control?.hasError('mismatch')) {
+      <li>Password isnt matching</li>
+      }
+    </ul>
+  </div>
+</div>
+}

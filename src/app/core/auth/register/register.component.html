@@ -1,1 +1,65 @@
-<p>register works!</p>
+<section class="flex flex-col min-h-screen py-14 bg-gray-400">
+  <div class="bg-white w-1/2 m-auto p-10 rounded shadow-lg text-center">
+    <!-- main Title -->
+    <h1 class="text-3xl">Welcome To <span class="text-(--main-color)">Velora</span></h1>
+    <span class="text-sm text-red-900"
+      >⚠️ Note: This is a demo site for learning purposes. You must log in to try all features. This
+      is not a recommended setup for a real e-commerce website.</span
+    >
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+      <!-- Name Input -->
+      <app-input
+        [control]="registerForm.get('name')"
+        [inputType]="'text'"
+        [inputId]="'name'"
+        [labelName]="'Name'"
+      />
+      <!-- Email Input -->
+      <app-input
+        [control]="registerForm.get('email')"
+        [inputType]="'text'"
+        [inputId]="'email'"
+        [labelName]="'Email'"
+      />
+      <!-- Password Input -->
+      <app-input
+        [control]="registerForm.get('password')"
+        [inputType]="'password'"
+        [inputId]="'password'"
+        [labelName]="'Password'"
+        >Password must include uppercase, lowercase, number, special char, and be 8+
+        chars</app-input
+      >
+      <!-- Confirm Password -->
+      <app-input
+        [control]="registerForm.get('rePassword')"
+        [inputType]="'password'"
+        [inputId]="'password'"
+        [labelName]="'Confirm Password'"
+      />
+      <!-- Phone Input -->
+      <app-input
+        [control]="registerForm.get('phone')"
+        [inputType]="'tel'"
+        [inputId]="'phone'"
+        [labelName]="'Phone Number'"
+        >You Should Use Egyptian Phone Number</app-input
+      >
+      <!-- Subbmit Button -->
+      <button type="submit" class="btn">
+        @if (isLoading === false) { Register Now!}@else {
+        <span><i class="fas fa-spinner animate-spin"></i></span>
+        }
+      </button>
+    </form>
+    <!-- Login -->
+    <div class="mt-5">
+      <h3>
+        Already Have an Account ?
+        <span class="text-blue-700 underline underline-offset-4"
+          ><a routerLink="/login">Login</a></span
+        >
+      </h3>
+    </div>
+  </div>
+</section>

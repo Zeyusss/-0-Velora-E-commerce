@@ -1,1 +1,44 @@
-<p>login works!</p>
+<section class="flex flex-col min-h-screen bg-gray-400 py-14">
+  <div class="bg-white w-1/2 m-auto p-10 rounded shadow-lg text-center">
+    <!-- main Title -->
+    <h1 class="text-3xl">Welcome to <span class="text-(--main-color)">Velora</span></h1>
+    <span class="text-sm text-red-900"
+      >⚠️ Note: This is a demo site for learning purposes. You must log in to try all features. This
+      is not a recommended setup for a real e-commerce website.</span
+    >
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <!-- Email Input -->
+      <app-input
+        [control]="loginForm.get('email')"
+        [inputType]="'text'"
+        [inputId]="'email'"
+        [labelName]="'Email'"
+      />
+      <!-- Password Input -->
+      <app-input
+        [control]="loginForm.get('password')"
+        [inputType]="'password'"
+        [inputId]="'password'"
+        [labelName]="'Password'"
+        >Password must include uppercase, lowercase, number, special char, and be 8+
+        chars</app-input
+      >
+
+      <!-- Subbmit Button -->
+      <button type="submit" class="btn">
+        @if (isLoading === false) {Login}@else {
+        <span><i class="fas fa-spinner animate-spin"></i></span>
+        }
+      </button>
+    </form>
+    <!-- Register -->
+    <div class="mt-5">
+      <h3>
+        Dont Have an Account ?
+        <span class="text-blue-700 underline underline-offset-4"
+          ><a routerLink="/register">Register Now</a></span
+        >
+      </h3>
+    </div>
+  </div>
+</section>

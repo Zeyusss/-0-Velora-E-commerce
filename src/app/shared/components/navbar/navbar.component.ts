@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
 import { initFlowbite } from 'flowbite';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +11,17 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  private readonly authService = inject(AuthService);
   constructor(private flowbiteService: FlowbiteService) {}
-  @Input({ required: true }) isLoggedIn: boolean = true;
+  @Input({ required: true }) isLoggedIn: boolean = false;
 
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {
       initFlowbite();
     });
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 }
