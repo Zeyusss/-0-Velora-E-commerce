@@ -12,7 +12,7 @@
           <span class="text-[21px]"> {{ productData.price }} EGP </span>
           <span><i class="fas fa-star text-yellow-300"></i> {{ productData.ratingsAverage }} </span>
         </div>
-        <button class="btn">Add To Cart</button>
+        <button (click)="addProductToCart()" class="btn">Add To Cart</button>
       </div>
     </div>
   </div>
