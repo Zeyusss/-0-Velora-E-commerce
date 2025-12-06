@@ -13,6 +13,7 @@ import { NotfoundComponent } from './features/notfound/notfound.component';
 import { DetailsComponent } from './features/details/details.component';
 import { isloggedinGuard } from './core/guard/isloggedin/isloggedin-guard';
 import { authGuard } from './core/guard/auth/auth-guard';
+import { AllordersComponent } from './features/allorders/allorders.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,9 +35,10 @@ export const routes: Routes = [
       { path: 'brands', component: BrandsComponent, title: 'Brands Page' },
       { path: 'cart', component: CartComponent, title: 'Cart Page' },
       { path: 'categories', component: CategoriesComponent, title: 'Categories Page' },
-      { path: 'checkout', component: CheckoutComponent, title: 'checkout Page' },
+      { path: 'checkout/:cartId', component: CheckoutComponent, title: 'checkout Page' },
       { path: 'products', component: ProductsComponent, title: 'Products Page' },
       { path: 'details/:id', component: DetailsComponent, title: 'Details Page' },
+      { path: 'allorders', component: AllordersComponent, title: 'allorders Page' },
     ],
   },
   { path: '**', component: NotfoundComponent, title: 'NotFound Page' },

@@ -1,10 +1,19 @@
-<section class="py-14 bg-gray-300">
+<section class="py-14 bg-gray-300 min-h-screen">
   <div class="container">
+    @if (userCartDetails.products.length > 0) {
     <div class="grid sm:grid-cols-12 gap-10 items-start">
       <div class="col-span-8">
-        <div class="flex items-center space-x-3 mb-4">
-          <h1 class="text-3xl">Cart</h1>
-          <span class="text-lg text-green-600"> {{ userCartDetails.products.length }} Items</span>
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center space-x-3">
+            <h1 class="text-3xl">Cart</h1>
+            <span class="text-lg text-green-600"> {{ userCartDetails.products.length }} Items</span>
+          </div>
+          <button
+            (click)="removeAllItemsFromUserCart()"
+            class="disabled:bg-gray-500 disabled:cursor-not-allowed bg-green-700 text-white border border-green-900 p-1.5 rounded cursor-pointer hover:bg-green-900 transition-all duration-300"
+          >
+            Clear Cart
+          </button>
         </div>
         @for (item of userCartDetails.products; track $index) {
         <div class="grid sm:grid-cols-12 bg-white rounded p-2 shadow-lg gap-3 mb-3">
@@ -22,11 +31,21 @@
               <h4 class="text-lg">{{ item.product.title }}</h4>
               <div class="flex items-center space-x-5">
                 <div class="bg-gray-300 rounded-lg flex items-center space-x-10 my-3 py-1 px-2">
-                  <button><i class="fas fa-minus"></i></button>
+                  <button
+                    class="cursor-pointer"
+                    (click)="editItemFromUserCart(item.product._id, item.count - 1)"
+                  >
+                    <i class="fas fa-minus"></i>
+                  </button>
                   <span> {{ item.count }} </span>
-                  <button><i class="fas fa-plus"></i></button>
+                  <button
+                    class="cursor-pointer"
+                    (click)="editItemFromUserCart(item.product._id, item.count + 1)"
+                  >
+                    <i class="fas fa-plus"></i>
+                  </button>
                 </div>
-                <button>
+                <button (click)="removeItemFromUserCart(item.product._id)" class="cursor-pointer">
                   <i class="fas fa-trash-can"></i>
                 </button>
               </div>
@@ -46,10 +65,25 @@
         </div>
         <div class="flex items-center justify-between my-5">
           <span class="text-[16px]">Price</span>
-          <span class="text-[16px]"> {{ userCartDetails.totalCartPrice }} </span>
+          <span class="text-[16px]"> {{ userCartDetails.totalCartPrice }} EGP </span>
         </div>
-        <button class="btn">Proceed To Check Out</button>
+        <button [routerLink]="['/checkout', userCartDetails._id]" class="btn">
+          Proceed To Check Out
+        </button>
       </div>
     </div>
+    }@else {
+    <div class="text-center">
+      <h2 class="text-2xl font-semibold mb-2">Your cart is empty</h2>
+      <p class="text-sm text-gray-500 mb-4">Add items to your cart and they’ll appear here.</p>
+      <div class="flex items-center justify-center gap-3">
+        <button
+          class="disabled:bg-gray-500 disabled:cursor-not-allowed bg-green-700 text-white border border-green-900 p-1.5 rounded cursor-pointer hover:bg-green-900 transition-all duration-300"
+        >
+          <a routerLink="/products"> Continue shopping </a>
+        </button>
+      </div>
+    </div>
+    }
   </div>
 </section>

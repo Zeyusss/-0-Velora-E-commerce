@@ -1,1 +1,41 @@
-<p>checkout works!</p>
+<section class="flex flex-col min-h-screen bg-gray-400 py-14">
+  <div class="bg-white w-1/2 m-auto p-10 rounded shadow-lg text-center">
+    <!-- main Title -->
+    <h1 class="text-3xl">Check <span class="text-(--main-color)">Out</span></h1>
+    <span class="text-sm text-red-900"
+      >⚠️ Note: This is a demo Checkout for learning purposes. to try all payment features. This is
+      not a recommended setup for a real e-commerce website.</span
+    >
+    <form [formGroup]="checkOutForm" (ngSubmit)="submitCheckOut()">
+      <!-- Details Input -->
+      <app-input
+        [control]="checkOutForm.get('shippingAddress')?.get('details')"
+        [inputId]="'details'"
+        [labelName]="'Details'"
+        [element]="'textArea'"
+      />
+      <!-- Phone Input -->
+      <app-input
+        [control]="checkOutForm.get('shippingAddress')?.get('phone')"
+        [inputType]="'tel'"
+        [inputId]="'phone'"
+        [labelName]="'Phone'"
+        >You Should Use Egyptian Phone Number</app-input
+      >
+      <!-- Email Input -->
+      <app-input
+        [control]="checkOutForm.get('shippingAddress')?.get('city')"
+        [inputType]="'text'"
+        [inputId]="'city'"
+        [labelName]="'City'"
+      />
+
+      <!-- Subbmit Button -->
+      <button type="submit" class="btn">
+        @if (isLoading === false) { CheckOut }@else {
+        <span><i class="fas fa-spinner animate-spin"></i></span>
+        }
+      </button>
+    </form>
+  </div>
+</section>

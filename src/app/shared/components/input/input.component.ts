@@ -12,4 +12,5 @@ export class InputComponent {
   @Input() inputType!: string;
   @Input() inputId!: string;
   @Input() labelName!: string;
+  @Input() element: string = 'input';
 }

@@ -17,4 +17,15 @@ export class CartService {
   getLoggedUserCart(): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/cart`);
   }
+  removeItemFromCart(productId: string): Observable<any> {
+    return this.httpClient.delete(`${environment.baseUrl}/cart/${productId}`);
+  }
+  putCartItemCount(productId: string, count: number): Observable<any> {
+    return this.httpClient.put(`${environment.baseUrl}/cart/${productId}`, {
+      count: count,
+    });
+  }
+  deleteAllCartItems(): Observable<any> {
+    return this.httpClient.delete(`${environment.baseUrl}/cart`);
+  }
 }

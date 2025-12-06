@@ -19,7 +19,6 @@ export class CardComponent {
   addProductToCart(productId: string): void {
     this.cartService.postAddProductToCart(productId).subscribe({
       next: (res) => {
-        console.log(res);
         if (res.status === 'success') {
           this.toastrService.success(res.message);
         }
