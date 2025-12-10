@@ -10,7 +10,7 @@ A modern, responsive ecommerce web app built with Angular 20, Tailwind CSS 4, an
 
 ## Live Demo
 
-Link: to be provided
+Link:  [Demo](https://ecommerce-velora.netlify.app/)
 
 ---
 
