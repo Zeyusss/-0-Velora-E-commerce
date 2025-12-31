@@ -46,6 +46,7 @@ Link: [Demo](https://ecommerce-velora.netlify.app/)
 - Product Catalog: Listing, categories, brands
 - Product Details: Dedicated details view
 - Cart: Add/update/remove, clear cart
+- Wishlist: Add/remove products, view wishlist, managed via WishlistService and WishlistComponent
 - Checkout: Session flow (`/orders/checkout-session/:cartId`)
 - Orders: View all orders
 - Content Pages: Newsletter, FAQs, Contact Us

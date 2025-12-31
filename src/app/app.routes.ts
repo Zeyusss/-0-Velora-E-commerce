@@ -3,7 +3,6 @@ import { AnonLayoutComponent } from './core/layout/anon-layout/anon-layout.compo
 import { LoginComponent } from './core/auth/login/login.component';
 import { RegisterComponent } from './core/auth/register/register.component';
 import { UserLayoutComponent } from './core/layout/user-layout/user-layout.component';
-import { HomeComponent } from './features/home/home.component';
 import { NotfoundComponent } from './features/notfound/notfound.component';
 import { isloggedinGuard } from './core/guard/isloggedin/isloggedin-guard';
 import { authGuard } from './core/guard/auth/auth-guard';
@@ -26,7 +25,11 @@ export const routes: Routes = [
     component: UserLayoutComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'home', component: HomeComponent, title: 'Home ' },
+      {
+        path: 'home',
+        loadComponent: () => import('./features/home/home.component').then((c) => c.HomeComponent),
+        title: 'Home ',
+      },
       {
         path: 'brands',
         loadComponent: () =>

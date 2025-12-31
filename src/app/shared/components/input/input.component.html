@@ -1,37 +1,41 @@
-<div class="relative">
-  @if (element === 'input') {
-  <input
-    class="main-input my-5 peer"
-    [formControl]="control"
-    [type]="inputType"
-    [id]="inputId"
-    placeholder=" "
-  />
-  } @else if(element === 'textArea') {
-  <textarea
-    class="main-input my-5 peer resize-none"
-    [formControl]="control"
-    [id]="inputId"
-    placeholder=" "
-  ></textarea>
-  }
+<div class="relative mb-10">
+  <div class="relative">
+    @if (element === 'input') {
+    <input
+      class="main-input peer"
+      [formControl]="control"
+      [type]="inputType"
+      [id]="inputId"
+      placeholder=" "
+    />
+    } @else if (element === 'textArea') {
+    <textarea
+      class="main-input peer resize-none"
+      [formControl]="control"
+      [id]="inputId"
+      placeholder=" "
+    ></textarea>
+    }
 
-  <label [for]="inputId" class="main-label"> {{ labelName }} </label>
-</div>
-@if (control?.errors && control?.touched) {
-<div class="flex p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-800" role="alert">
-  <div>
-    <ul class="mt-1.5 list-disc list-inside">
+    <label [for]="inputId" class="main-label">
+      {{ labelName }}
+    </label>
+  </div>
+
+  <!-- Error -->
+  <div class="absolute left-0 top-full mt-1 min-h-5">
+    @if (control?.errors && control?.touched) {
+    <div class="text-sm text-red-600" role="alert">
       @if (control?.hasError('required')) {
-      <li>Input Required</li>
+      <span>Input Required</span>
       } @if (control?.hasError('email')) {
-      <li>Invalid Email Format</li>
+      <span>Invalid Email Format</span>
       } @if (control?.hasError('pattern')) {
-      <li><ng-content></ng-content></li>
+      <span><ng-content></ng-content></span>
       } @if (control?.hasError('mismatch')) {
-      <li>Password isnt matching</li>
+      <span>Password isn't matching</span>
       }
-    </ul>
+    </div>
+    }
   </div>
 </div>
-}
